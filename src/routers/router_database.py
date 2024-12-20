@@ -5,7 +5,7 @@ from fastapi import APIRouter, HTTPException, Depends, Header
 from sqlalchemy import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.auth.auth import get_current_user
+from src.users.auth import get_current_user
 from src.database import get_async_session
 
 from src.config import DB_HOST, DB_PORT, DB_PASS, DB_USER, DB_NAME
