@@ -35,7 +35,6 @@ INSERT INTO product VALUES (3, 2, 'Apple iPhone 15');"""
 
 @router.post("/", description=f"Введите запрос, например {create_table}")
 async def do_query(query_text: str = Body(...), current_user: Users = Depends(get_current_user)):
-    
     try:
         async with async_session_maker() as session:
             query = text(query_text)
@@ -43,7 +42,7 @@ async def do_query(query_text: str = Body(...), current_user: Users = Depends(ge
             await session.commit()       
             await QueryDAO.add(user_id=current_user.id, query=query_text, time=datetime.datetime.now())
             if "CREATE" in query_text.upper():
-                 return {"status": "success", "data": "запрос не вернул никаких данных"}
+                 return {"status": "success", "data": "Запрос не вернул никаких данных"}
             else:
                  # Получаем все строки и столбцы
                 rows = result.fetchall()
